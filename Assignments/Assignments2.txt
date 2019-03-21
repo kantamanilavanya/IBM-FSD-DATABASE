@@ -1,0 +1,27 @@
+1>List employee count under each manager  -name,count.....
+
+select e.firstname,count(m.reportsTo)  from employees e join employees m on e.employeenumber=m.reportsTo group by e.employeenumber,m.reportsTo;
+
+2>List customer wise unique products orderd.......
+
+3>List product wise total order amount.....
+
+Select P.productname,sum(OD.priceEach) from Products P join OrderDetails OD on P.productCode=OD.productCode group by P.productname;
+
+4> List detaills of manager who has highest sales.......
+
+Select E.firstName,sum(P.amount) from Employees E join Employees F on E.EmployeeNumber=F.reportsTo
+
+join Customers C on C.salesRepEmployeeNumber=F.EmployeeNumber
+
+join Payments P on P.customerNumber=C.customerNumber group by E.firstName order by sum(P.amount) desc;
+
+5>List month wise no of orders placed for each product line...........
+
+select extract(month from o.orderdate) as month ,count(*)  as totalorders,p.productline from customers c join orders o on c.customernumber=o.customernumber
+
+join orderdetails o2 on o2.ordernumber=o.ordernumber join products p  on p.productcode=o2.productcode  group by month,p.productline ;
+
+6> List customers who has not placed any order for all products.........
+
+
